@@ -254,7 +254,7 @@
                 </commons:ProcessFlow>
             </Panel>
             <Panel class="sapUiSmallMarginTop PanelBottonBrdr" headerText="Comment" >
-                <TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
+                <TextArea width="50%" growing="true" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
             </Panel>
             <Panel class="sapUiSmallMarginTop PanelBottonBrdr" headerText="Workflow History" >
                 <List
