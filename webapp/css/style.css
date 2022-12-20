@@ -1,0 +1,17 @@
+/* Enter your custom styles here */
+
+.PanelBottonBrdr .sapMPanelContent:not(.sapMPanelBGTransparent) {
+    border-bottom: none !important;
+}
+
+.sapUiSizeCompact .sapUiFormContainerTitle>.sapUiFormTitle {
+    height: 0rem !important;
+}
+
+.sapMObjStatus>.sapMObjStatusTitle {
+    font-weight: bold !important;
+}
+
+.sapMOHR .sapMOHRAttr .sapMObjectAttributeTitle {
+    font-weight: bold !important;
+}

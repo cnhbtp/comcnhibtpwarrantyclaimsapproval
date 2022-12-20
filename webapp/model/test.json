@@ -1,0 +1,185 @@
+{
+    "sequence": ["L0","FA", "L2", "L4", "L5", "FR","RL","PU"],
+    "Comments": [],
+    "processes": [{
+        "text": "Reprocess",
+        "code": "Z837"
+    },{
+        "text": "Dummy Action",
+        "code": "Z111"
+    },{
+        "text": "New price determination",
+        "code": "Z777"
+    },{
+        "text": "Stop claim GOP in stato Z017",
+        "code": "Z053"
+    },{
+        "text": "Determination of DOA level",
+        "code": "Z222"
+    },{
+        "text": "New Grid Checks",
+        "code": "Z333"
+    },{
+        "text": "Move back claim to the dealer",
+        "code": "Z853"
+    },{
+        "text": "Reject Claim",
+        "code": "Z123"
+    }],
+    "Items":[{
+        "code": "234555",
+        "mat": "1,323,233.00",
+        "curr": "RUB",
+        "warranty": "D"
+    },{
+        "code": "6346234",
+        "mat": "1,323,233.00",
+        "curr": "RUB",
+        "warranty": "D"
+    }],
+    "Resultsss":[
+        {
+            "claim": "3411387",
+            "type": "ZW01-Online Claim",
+            "vin": "K00109407450208333",
+            "society": "G384-000 IVECO RUSSIA RU",
+            "claimN": "6128474_A01",
+            "uistatus": "Not yet submitted",
+            "uistatusstate": "None",
+            "subDate": "12 Aug, 2021",
+            "comOrg": "RU01-Iveco Russia RU",
+            "failureDate": "12 Aug, 2021",
+            "failureTime": "10:00:00",
+            "repairEndTime": "12:44:00",
+            "partner": "454334",
+            "jobOrder": "UM",
+            "repairDate": "12 Aug, 2021",
+            "attandanceTime": "10:00:00",
+            "attandanceType": "W",
+            "vehicle": "0019094074",
+            "model": "CKD EXPORT",
+            "km": "12222.00"        
+        },{
+            "claim": "3364564",
+            "type": "ZW01-Online Claim",
+            "vin": "K00109407450208333",
+            "uistatus": "Not yet submitted",
+            "uistatusstate": "None",
+            "society": "G384-000 IVECO RUSSIA RU",
+            "claimN": "6128474_A01",
+            "subDate": "12 Aug, 2021",
+            "comOrg": "RU01-Iveco Russia RU",
+            "failureDate": "12 Aug, 2021",
+            "failureTime": "10:00:00",
+            "repairEndTime": "12:44:00",
+            "partner": "454334",
+            "jobOrder": "UM",
+            "repairDate": "12 Aug, 2021",
+            "attandanceTime": "10:00:00",
+            "attandanceType": "W",
+            "vehicle": "0019094074",
+            "model": "CKD EXPORT",
+            "km": "12222.00"        
+        },{
+            "claim": "9654345",
+            "type": "ZW01-Online Claim",
+            "uistatus": "Not yet submitted",
+            "uistatusstate": "None",
+            "vin": "K00109407450208333",
+            "society": "G384-000 IVECO RUSSIA RU",
+            "claimN": "6128474_A01",
+            "subDate": "12 Aug, 2021",
+            "comOrg": "RU01-Iveco Russia RU",
+            "failureDate": "12 Aug, 2021",
+            "failureTime": "10:00:00",
+            "repairEndTime": "12:44:00",
+            "partner": "454334",
+            "jobOrder": "UM",
+            "repairDate": "12 Aug, 2021",
+            "attandanceTime": "10:00:00",
+            "attandanceType": "W",
+            "vehicle": "0019094074",
+            "model": "CKD EXPORT",
+            "km": "12222.00"        
+        },{
+            "claim": "1334234",
+            "type": "ZW01-Online Claim",
+            "vin": "K00109407450208333",
+            "uistatus": "Not yet submitted",
+            "uistatusstate": "None",
+            "society": "G384-000 IVECO RUSSIA RU",
+            "claimN": "6128474_A01",
+            "subDate": "12 Aug, 2021",
+            "comOrg": "RU01-Iveco Russia RU",
+            "failureDate": "12 Aug, 2021",
+            "failureTime": "10:00:00",
+            "repairEndTime": "12:44:00",
+            "partner": "454334",
+            "jobOrder": "UM",
+            "repairDate": "12 Aug, 2021",
+            "attandanceTime": "10:00:00",
+            "attandanceType": "W",
+            "vehicle": "0019094074",
+            "model": "CKD EXPORT",
+            "km": "12222.00"        
+        },{
+            "claim": "5743632",
+            "type": "ZW01-Online Claim",
+            "vin": "K00109407450208333",
+            "uistatus": "Not yet submitted",
+            "uistatusstate": "None",
+            "society": "G384-000 IVECO RUSSIA RU",
+            "claimN": "6128474_A01",
+            "subDate": "12 Aug, 2021",
+            "comOrg": "RU01-Iveco Russia RU",
+            "failureDate": "12 Aug, 2021",
+            "failureTime": "10:00:00",
+            "repairEndTime": "12:44:00",
+            "partner": "454334",
+            "jobOrder": "UM",
+            "repairDate": "12 Aug, 2021",
+            "attandanceTime": "10:00:00",
+            "attandanceType": "W",
+            "vehicle": "0019094074",
+            "model": "CKD EXPORT",
+            "km": "12222.00"        
+        }
+    ],
+    "NextApprovers": [{
+        "email": "matthewwhigham@mindsetconsulting.com",
+        "name": "Matthew Whigham",
+        "icon": "sap-icon://employee",
+        "id": "1",
+        "level": 1,
+        "state": [
+            {
+                "state": "Positive",
+                "value": 10
+            }
+        ]
+    },{
+        "email": "abhilashgampa@mindsetconsulting.com",
+        "name": "Abhilash Gampa",
+        "icon": "sap-icon://employee-approvals",
+        "id": "0",
+        "level": 0,
+        "state": [
+            {
+                "state": "Neutral",
+                "value": 10
+            }
+        ]
+    },{
+        "email": "jonathanbragg@mindsetconsulting.com",
+        "name": "Jonathan Bragg",
+        "icon": "sap-icon://employee-approvals",
+        "id": "2",
+        "level": 2,
+        "state": [
+            {
+                "state": "Positive",
+                "value": 10
+            }
+        ]
+    }]
+}

@@ -1,0 +1,285 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.cnhi.btp.warrantyclaimsapproval.controller.Detail"
+	xmlns:ui="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:commons="sap.suite.ui.commons"
+	xmlns="sap.m"
+	height="100%">
+    <Page id="ObjectPageLayout" showHeader="false" showFooter="{= (${LocalModel>CAPMStatusCode} &amp;&amp; ${LocalModel>CAPMStatusCode} === 'C') ? false : true}" >
+        <content>
+            <ObjectHeader responsive="true"
+				title="{i18n>claimNo}{LocalModel>Clmno}"
+				backgroundDesign="Solid" class="sapUiResponsivePadding--header" >
+                <ObjectAttribute title="{i18n>claimN}" text="{LocalModel>claimN}" />
+                <ObjectAttribute title="{i18n>wtyClaimType}" text="{LocalModel>Wtype} - {LocalModel>WtypeText}" />
+                <ObjectAttribute title="{i18n>society}" text="{LocalModel>Vkorg} - {LocalModel>VkorgText}" />
+                <ObjectAttribute title="{i18n>comOrg}" text="{LocalModel>Bukrs} - {LocalModel>BukrsText}" />
+                <ObjectAttribute title="{i18n>objetoRef}" text="{LocalModel>ObjRef}" />
+				<statuses>
+					<ObjectStatus title="{i18n>workFlowStatus}" text="{LocalModel>uistatus}" state="{LocalModel>uistatusstate}" />
+				</statuses>
+			</ObjectHeader>
+            <VBox class="sapUiSmallMargin">
+            <Panel headerText="Claim Info">
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1"
+                                singleContainerFullSize="false" >
+                    <f:content>
+                        <core:Title text="" />
+                        <Label text="{i18n>partner}" />
+                        <Text text="{LocalModel>Partner}" />
+                        <Label text="{i18n>partnerDesc}" />
+                        <Text text="{LocalModel>PartnerText}" />
+                        <Label text="{i18n>jobOrder}" />
+                        <Text text="{LocalModel>jobOrder}" />
+                        <Label text="{i18n>failureDate}" />
+                        <Text text="{path: 'LocalModel>FailureDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
+                        <Label text="{i18n>repairStartDate}" />
+                        <Text text="{path: 'LocalModel>RepairStart', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
+                        <Label text="{i18n>repairEndDate}" />
+                        <Text text="{path: 'LocalModel>RepairEnd', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
+                        
+                        <!-- <Label text="{i18n>decision}" />
+                        <Text text="{LocalModel>Decision}" /> -->
+                        <core:Title text="" />
+                        <Label text="{i18n>vin}" />
+                        <Text text="{LocalModel>Vin}" />
+                        <!-- <Label text="{i18n>defectCode}" />
+                        <Text text="{LocalModel>DefectCode}" /> -->
+                        <Label text="{i18n>vehicle}" />
+                        <Text text="{LocalModel>Vehicle}" />
+                        <Label text="{i18n>modelDef}" />
+                        <Text text="{LocalModel>ModelDef}" />
+                        <Label text="{i18n>Usage}" />
+                        <Text text="{LocalModel>Km}" />
+                        <Label text="{i18n>curr}" />
+                        <Text text="{LocalModel>Curr}" />
+                        <Label text="{i18n>total}" />
+                        <Text text="{LocalModel>Total}" />
+                    </f:content>
+                </f:SimpleForm>
+                <ui:Table id="idDefectTbl" busyIndicatorDelay="0" rows="{LocalModel>DefectList}" visibleRowCount="5" selectionMode="None">
+                    <ui:extension>
+                        <OverflowToolbar>
+                            <Title id="title" text="Defect Code"/>
+                        </OverflowToolbar>
+                    </ui:extension>
+                    <ui:columns>
+                        <ui:Column width="10em">
+                            <Label text="{i18n>defectCode}" />
+                            <ui:template>
+                                <Text text="{LocalModel>DefectCode}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="7em">
+                            <Label text="{i18n>totalMat}" />
+                            <ui:template>
+                                <Text text="{LocalModel>TotalParts}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="7em">
+                            <Label text="{i18n>totalLab}" />
+                            <ui:template>
+                                <Text text="{LocalModel>TotalLabor}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="7em">
+                            <Label text="{i18n>totalOther}" />
+                            <ui:template>
+                                <Text text="{LocalModel>TotalOther}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="8em">
+                            <Label text="{i18n>totalExt}" />
+                            <ui:template>
+                                <Text text="{LocalModel>TotalAdd}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="5em">
+                            <Label text="{i18n>currency}" />
+                            <ui:template>
+                                <Text text="{LocalModel>Curr}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="5em">
+                            <Label text="{i18n>totalFail}" />
+                            <ui:template>
+                                <Text text="{LocalModel>TotalFail}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="7em">
+                            <Label text="{i18n>doaLevel}" />
+                            <ui:template>
+                                <Text text="{LocalModel>DoaLevel}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="10em">
+                            <Label text="{i18n>warrantyType}" />
+                            <ui:template>
+                                <Text text="{LocalModel>Warranty}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="7em">
+                            <Label text="{i18n>decition}" />
+                            <ui:template>
+                                <Text text="{LocalModel>DecisionText} ({LocalModel>Decision})" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="10em">
+                            <Label text="{i18n>srvPar}" />
+                            <ui:template>
+                                <Text text="{LocalModel>Service}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                    </ui:columns>
+                </ui:Table>
+            </Panel>
+            <!-- <smartTable:SmartTable id="claimItemsSmartTbl" busyIndicatorDelay="0" entitySet="ebanSet" tableBindingPath="LocalModel>Items" tableType="Table" showTablePersonalisation="true" useVariantManagement="false"
+                header="Detect Code" persistencyKey="claimItemsSmartTbl" enableAutoBinding="true" ignoreFromPersonalisation="Frgst"
+                showRowCount="true" showFullScreenButton="true" useExportToExcel="false" >
+                <ui:Table
+                    visibleRowCount="5" visibleRowCountMode="Auto" rowsUpdated="onTableUpdated"
+                    selectionMode="None">
+                    <ui:columns>
+                        <ui:Column width="6em">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "code", "columnIndex":"0", "filterProperty": "code", "sortProperty": "code", "type":"string", "leadingProperty": "code"}'/>
+                            </ui:customData>
+                            <Label text="Detect Code" />
+                            <ui:template>
+                                <Text text="{LocalModel>code}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="10em">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "mat", "columnIndex":"1", "filterProperty": "mat", "sortProperty": "mat", "type":"string", "leadingProperty": "mat"}'/>
+                            </ui:customData>
+                            <Label text="Total mat" />
+                            <ui:template>
+                                <Text text="{path: 'LocalModel>mat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="10em">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "curr", "columnIndex":"2", "filterProperty": "curr", "sortProperty": "curr", "type":"string", "leadingProperty": "curr"}'/>
+                            </ui:customData>
+                            <Label text="Currency" />
+                            <ui:template>
+                                <Text text="{LocalModel>curr}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="7em">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "warranty", "columnIndex":"3", "filterProperty": "warranty", "sortProperty": "warranty", "type":"string", "leadingProperty": "warranty"}'/>
+                            </ui:customData>
+                            <Label text="Warranty" />
+                            <ui:template>
+                                <Text text="{LocalModel>warranty}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                    </ui:columns>
+                </ui:Table>
+            </smartTable:SmartTable> -->
+            <Panel class="sapUiSmallMarginTop PanelBottonBrdr" headerText="Select process" visible="{= ${LocalModel>CAPMStatusCode} === 'A' || ${LocalModel>CAPMStatusCode} === 'C' ? true : false}" >
+                <Title text="{LocalModel>Astate}" visible="{= ${LocalModel>CAPMStatusCode} === 'C' ? true : false}" />
+                <Select visible="{= ${LocalModel>CAPMStatusCode} === 'A' ? true : false}" forceSelection="false" class="sapUiSmallMarginTop" showSecondaryValues= "true" selectedKey="{LocalModel>selProcess}" items="{LocalModel>/Actions}"  width="20%">
+                    <core:ListItem additionalText="{LocalModel>Acode}" text="{LocalModel>Description}" key="{LocalModel>Acode}" />
+                </Select>
+            </Panel>
+            <Panel class="sapUiSmallMarginTop PanelBottonBrdr" headerText="Approval Sequence" visible="{= ${LocalModel>IsRequestor} ? true : false}" >
+                <Table id="idNextApproverTbl" inset="false" mode="SingleSelectLeft" 
+                    items="{
+                        path: 'LocalModel>NextApprovers'
+                    }">
+                    <headerToolbar>
+                        <Toolbar>
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://clear-all" text="Clear" tooltip="Clear Selection" press="onClearTblSel" />
+                            <FlexBox>
+                                <Button icon="sap-icon://collapse-group" press="onChangeNextApprSeq" >
+                                    <customData>
+                                        <core:CustomData key="move" value="top"/>
+                                    </customData>
+                                </Button>
+                                <Button class="sapUiTinyMarginBegin" icon="sap-icon://navigation-up-arrow" press="onChangeNextApprSeq" >
+                                    <customData>
+                                        <core:CustomData key="move" value="oneAbove"/>
+                                    </customData>
+                                </Button>
+                                <Button class="sapUiTinyMarginBegin" icon="sap-icon://navigation-down-arrow" press="onChangeNextApprSeq" >
+                                    <customData>
+                                        <core:CustomData key="move" value="oneBelow"/>
+                                    </customData>
+                                </Button>
+                                <Button class="sapUiTinyMarginBegin" icon="sap-icon://expand-group" press="onChangeNextApprSeq" >
+                                    <customData>
+                                        <core:CustomData key="move" value="last"/>
+                                    </customData>
+                                </Button>
+                            </FlexBox>
+                            <Button icon="sap-icon://add-employee" text="Add" press="onAddNextApprover" />
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Text text="Sequence" />
+                        </Column>
+                        <Column >
+                            <Text text="Email" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Text text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{LocalModel>level}" />
+                                <Input value="{LocalModel>email}" change="onChangeEmail"/>
+                                <core:Icon src="sap-icon://delete" color="#e81a0c" press="onDeleteRow" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <commons:ProcessFlow
+                    id="processflow"
+                    lanes="{LocalModel>NextApprovers}" visible="{LocalModel>/showProcessFlow}" >
+                    <commons:lanes>
+                        <commons:ProcessFlowLaneHeader
+                            state="{LocalModel>state}"
+                            laneId="{LocalModel>id}"
+                            iconSrc="{LocalModel>icon}"
+                            tooltip="{LocalModel>email}"
+                            text="Level {LocalModel>level} ({LocalModel>email})"
+                            position="{LocalModel>position}" />
+                    </commons:lanes>
+                </commons:ProcessFlow>
+            </Panel>
+            <Panel class="sapUiSmallMarginTop PanelBottonBrdr" headerText="Comment" >
+                <TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
+            </Panel>
+            <Panel class="sapUiSmallMarginTop PanelBottonBrdr" headerText="Workflow History" >
+                <List
+                    showSeparators="Inner"
+                    items="{path: 'LocalModel>Comments', sorter : {path : 'createdAt', descending: true }}">
+                    <FeedListItem
+                        timestamp="{LocalModel>createdAt}"
+                        sender="{LocalModel>authorName}"
+                        senderPress="onSenderPress"
+                        info="{= ${LocalModel>type} === 'A' ? 'Approved' : ${LocalModel>type} === 'S' ? 'Submitted': ${LocalModel>type} === 'R' ? 'Rejected' : 'Saved'}"
+                        text="{LocalModel>comment}"
+                        convertLinksToAnchorTags="All"/>
+                </List>
+            </Panel>
+            </VBox>
+        </content>
+        <footer>
+			<Toolbar>
+				<ToolbarSpacer />
+                <Button text="{i18n>saveComments}" visible="{= ${LocalModel>IsRequestor} ? true : false}" press="onSaveComments"/>
+				<Button type="Reject" text="{i18n>reject}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressRejectBtn"/>
+                <Button type="Accept" text="{i18n>approve}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressApproveBtn"/>
+                <Button type="Accept" text="{i18n>submitToSAP}" visible="{= ${LocalModel>CAPMStatusCode} === 'A' ? true : false}" press="onUpdateBackend"/>
+                <Button type="Emphasized" text="Submit" visible="{= ${LocalModel>IsRequestor} ? ${LocalModel>CAPMStatusCode} === 'A' ? false : true : false}" press="onPressSubmitBtn"/>  
+			</Toolbar>
+		</footer>
+    </Page>
+</mvc:View>

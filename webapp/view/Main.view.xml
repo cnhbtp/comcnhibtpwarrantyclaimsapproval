@@ -1,0 +1,117 @@
+<mvc:View controllerName="com.cnhi.btp.warrantyclaimsapproval.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core"
+    xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:layout="sap.ui.layout">
+    <Page id="page" showHeader="false" >
+        <content>
+            <VBox class="sapUiSmallMargin" >
+            <!-- <smartTable:SmartTable id="claimsSmartTbl" busyIndicatorDelay="0" entitySet="ebanSet" tableBindingPath="LocalModel>/Results" tableType="Table" showTablePersonalisation="false" useVariantManagement="false"
+                            header="{i18n>tblTitle}" persistencyKey="claimsSmartTbl" enableAutoBinding="false"
+                            showRowCount="true" showFullScreenButton="true" useExportToExcel="false" > -->
+                <ui:Table id="claimsTbl" selectionMode="None" rows="{LocalModel>/Results}" filter="onFilter" visibleRowCountMode="Interactive" rowsUpdated="onRowsUpdated">
+                    <ui:rowSettingsTemplate>
+                        <ui:RowSettings highlight="{= ${LocalModel>CAPMStatusCode} === 'A' ? 'Success' : ${LocalModel>CAPMStatusCode} === 'IP' ? 'Warning' : ${LocalModel>CAPMStatusCode} === 'C' ? 'Information' : ${LocalModel>CAPMStatusCode} === 'R' ? 'Error' : 'None' }" />
+                    </ui:rowSettingsTemplate>
+                    <ui:extension>
+                        <Toolbar>
+                            <Title text="{LocalModel>/claimTblTitle}" titleStyle="H4" />
+                            <ToolbarSpacer />
+                            <Label text="{i18n>selectRange}:" visible="{LocalModel>/IsRequestorLoggedIn}"/>
+                            <DateRangeSelection class="sapUiTinyMarginBegin" visible="{LocalModel>/IsRequestorLoggedIn}"
+                                id="DRS3" dateValue="{LocalModel>/FromDate}" secondDateValue="{LocalModel>/ToDate}" showCurrentDateButton="true" showFooter="true" width="auto"
+                                change="onRefresh"/>
+                            <Button icon="sap-icon://refresh" type="Transparent" tooltip="{i18n>refreshList}" press="onRefresh" />
+                            <Button icon="sap-icon://clear-all" type="Transparent" tooltip="{i18n>clearSortFilter}" press="onClearSortFilter" />
+                        </Toolbar>
+                    </ui:extension>
+                    <ui:columns>
+                        <ui:Column hAlign="Begin" filterProperty="Clmno" sortProperty="Clmno">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Clmno", "columnIndex":"0", "filterProperty": "Clmno", "sortProperty": "Clmno", "type":"string", "leadingProperty": "Clmno"}'/>
+                            </ui:customData>
+                            <Label design="Bold"  text="{i18n>claimNo}"/>
+                            <ui:template>
+                                <Link text="{LocalModel>Clmno}" press="onItemPress" />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="Vin" sortProperty="Vin">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Vin", "columnIndex":"1", "filterProperty": "Vin", "sortProperty": "Vin", "type":"string", "leadingProperty": "Vin"}'/>
+                            </ui:customData>
+                            <Label design="Bold"  text="{i18n>vin}"/>
+                            <ui:template>
+                                <Text text="{LocalModel>Vin}" />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="Vkorg" sortProperty="Vkorg">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Vkorg", "columnIndex":"2", "filterProperty": "Vkorg", "sortProperty": "Vkorg", "type":"string", "leadingProperty": "Vkorg"}'/>
+                            </ui:customData>
+                            <Label design="Bold"  text="{i18n>society}"/>
+                            <ui:template>
+                                <Text text="{LocalModel>Vkorg} - {LocalModel>VkorgText}"  />                                 
+                            </ui:template>
+                        </ui:Column>
+                        
+                        <ui:Column hAlign="Begin" filterProperty="CreateDate" sortProperty="CreateDate" filterType="{type: 'sap.ui.model.type.Date', formatOptions: {UTC: true}}" >
+                            <!-- <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "CreateDate", "columnIndex":"4", "filterProperty": "CreateDate", "sortProperty": "CreateDate", "type":"string", "leadingProperty": "CreateDate"}'/>
+                            </ui:customData> -->
+                            <Label design="Bold" text="{i18n>createDate}"/>
+                            <ui:template>
+                                <Text text="{path: 'LocalModel>CreateDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"  />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="FailureDate" sortProperty="FailureDate">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "FailureDate", "columnIndex":"5", "filterProperty": "FailureDate", "sortProperty": "FailureDate", "type":"string", "leadingProperty": "FailureDate"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>failureDate}"/>
+                            <ui:template>
+                                <Text text="{path: 'LocalModel>FailureDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"  />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="RepairStart" sortProperty="RepairStart">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "RepairStart", "columnIndex":"6", "filterProperty": "RepairStart", "sortProperty": "RepairStart", "type":"string", "leadingProperty": "RepairStart"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>repairStartDate}"/>
+                            <ui:template>
+                                <Text text="{path: 'LocalModel>RepairStart', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"  />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="Astate" sortProperty="Astate">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Astate", "columnIndex":"7", "filterProperty": "Astate", "sortProperty": "Astate", "type":"string", "leadingProperty": "Astate"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>sapStatus}"/>
+                            <ui:template>
+                                <Text text="{LocalModel>Astate}"  />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="StatusText" sortProperty="StatusText">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "StatusText", "columnIndex":"8", "filterProperty": "StatusText", "sortProperty": "StatusText", "type":"string", "leadingProperty": "StatusText"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>sapStatusText}"/>
+                            <ui:template>
+                              <Text text="{LocalModel>StatusText}"  />  
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="uistatus" sortProperty="uistatus">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "uistatus", "columnIndex":"9", "filterProperty": "uistatus", "sortProperty": "uistatus", "type":"string", "leadingProperty": "uistatus"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>workFlowStatus}"/>
+                            <ui:template>
+                                <ObjectStatus text="{LocalModel>uistatus}" state="{LocalModel>uistatusstate}" />
+                            </ui:template>
+                        </ui:Column>
+                        
+                    </ui:columns>
+                </ui:Table>
+            <!-- </smartTable:SmartTable> -->
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
+

@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: com-cnhi-btp-warrantyclaimsapproval
+description: A Fiori application.
+version: 0.0.1
+modules:
+- name: com-cnhi-btp-warrantyclaimsapproval-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: com-cnhi-btp-warrantyclaimsapproval-destination-service
+    parameters:
+      content-target: true
+  - name: com-cnhi-btp-warrantyclaimsapproval-repo-host
+    parameters:
+      service-key:
+        name: com-cnhi-btp-warrantyclaimsapproval-repo-host-key
+  - name: com-cnhi-btp-warrantyclaimsapproval-uaa
+    parameters:
+      service-key:
+        name: com-cnhi-btp-warrantyclaimsapproval-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: com-cnhi-btp-warrantyclaimsapproval_html_repo_host
+          ServiceInstanceName: com-cnhi-btp-warrantyclaimsapproval-html5-srv
+          ServiceKeyName: com-cnhi-btp-warrantyclaimsapproval-repo-host-key
+          sap.cloud.service: com-cnhi-btp-warrantyclaimsapproval
+        - Authentication: OAuth2UserTokenExchange
+          Name: com-cnhi-btp-warrantyclaimsapproval_uaa
+          ServiceInstanceName: com-cnhi-btp-warrantyclaimsapproval-xsuaa-srv
+          ServiceKeyName: com-cnhi-btp-warrantyclaimsapproval-uaa-key
+          sap.cloud.service: com-cnhi-btp-warrantyclaimsapproval
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: com-cnhi-btp-warrantyclaimsapproval-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: com-cnhi-btp-warrantyclaimsapproval-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comcnhibtpwarrantyclaimsapproval.zip
+      name: comcnhibtpwarrantyclaimsapproval
+      target-path: resources/
+- name: comcnhibtpwarrantyclaimsapproval
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: com-cnhi-btp-warrantyclaimsapproval-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: com-cnhi-btp-warrantyclaimsapproval-destination-service
+    service-plan: lite
+- name: com-cnhi-btp-warrantyclaimsapproval-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: com-cnhi-btp-warrantyclaimsapproval-xsuaa-srv
+    service-plan: application
+- name: com-cnhi-btp-warrantyclaimsapproval-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: com-cnhi-btp-warrantyclaimsapproval-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
