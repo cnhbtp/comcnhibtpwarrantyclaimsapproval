@@ -5,7 +5,7 @@
     {
         "source": "^/sap/opu/(.*)$",
         "target": "/sap/opu/$1",
-        "destination": "ERN",
+        "destination": "ERPDQP",
         "authenticationType": "xsuaa",
         "csrfProtection": false
     },

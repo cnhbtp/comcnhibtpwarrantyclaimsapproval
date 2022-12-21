@@ -36,6 +36,8 @@
                         <Text text="{path: 'LocalModel>RepairStart', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
                         <Label text="{i18n>repairEndDate}" />
                         <Text text="{path: 'LocalModel>RepairEnd', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
+                        <Label text="{i18n>subDate}" />
+                        <Text text="{path: 'LocalModel>SubDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
                         
                         <!-- <Label text="{i18n>decision}" />
                         <Text text="{LocalModel>Decision}" /> -->
@@ -48,6 +50,8 @@
                         <Text text="{LocalModel>Vehicle}" />
                         <Label text="{i18n>modelDef}" />
                         <Text text="{LocalModel>ModelDef}" />
+                        <Label text="{i18n>manDate}" />
+                        <Text text="{path: 'LocalModel>ManDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
                         <Label text="{i18n>Usage}" />
                         <Text text="{LocalModel>Km}" />
                         <Label text="{i18n>curr}" />
